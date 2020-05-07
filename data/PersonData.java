@@ -7,10 +7,10 @@ import entities.Person;
 
 public class PersonData {
     List<Person> lis = new CopyOnWriteArrayList<Person>();
-    // public static int id;
+    int id;
 
     public PersonData() {
-        // id=0;
+        id=0;
     }
 
     public List<Person> list() {
@@ -18,7 +18,7 @@ public class PersonData {
     }
 
     public void create(Person d) {
-        int id = lis.size() + 1;
+        id = id + 1;
         System.out.println("ID:" + id);
         d.setId(id);
         lis.add(d);

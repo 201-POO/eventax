@@ -57,7 +57,6 @@ public class Main {
                     System.out.println("Incorrecto");
                     break;
             }
-
         } while (opt != 0);
 
     }
