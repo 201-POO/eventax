@@ -21,6 +21,7 @@ public class Main {
             System.out.println("Choice option: ");
             opt = input.nextInt();
             System.out.println("You chosed: " + opt);
+            input.nextLine(); //Limpiar el buffer
             switch (opt) {
                 case 1:
                     System.out.println("****** 1 List *****");
@@ -32,20 +33,13 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("**** 2 New ****");
-                   
-                    System.out.print("Ingrese Name: ");
-                    String n= input.nextLine(); 
-                    input.nextLine();   
-                    System.out.print("Name: "+n);    
-                                            
-                    System.out.print("Ingrese Sex: ");
-                    String s= input.nextLine();
-                    input.nextLine();
-                    System.out.print("Sex: "+s);
-
                     Person d = new Person();
-                    d.setName(n);
-                    d.setSex(s);
+                    
+                    System.out.print("Ingrese Name: ");
+                    d.setName(input.nextLine());               
+                    System.out.print("Ingrese Sex: ");
+                    d.setSex(input.nextLine());
+
                     pData.create(d);
                     break;
                 case 3:
