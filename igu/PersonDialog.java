@@ -20,10 +20,10 @@ public class PersonDialog extends JDialog {
         JButton goButton = new JButton("Save");
 
         Object[][] rowData = { { 1, 2 }, { 3, 4 } };
-       String[] columnNames = { "col1", "col2" };
-       JTable jTable = new JTable(rowData, columnNames);
-       JScrollPane jSP = new JScrollPane();
-       jSP.setViewportView(jTable);
+        String[] columnNames = { "col1", "col2" };
+        JTable jTable = new JTable(rowData, columnNames);
+        JScrollPane jSP = new JScrollPane();
+        jSP.setViewportView(jTable);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         add(new JLabel("From:"));
