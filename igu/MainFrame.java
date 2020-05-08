@@ -3,18 +3,15 @@ package igu;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 
 public class MainFrame extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
     JMenuItem m11;
+
     public MainFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 200);
+        setSize(800, 800);
         setTitle("Main Frame");
         setLocationRelativeTo(null);
         initMenu();
@@ -38,7 +35,8 @@ public class MainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == m11) {
             System.out.println(" Menu 1.1 has press ");
+            PersonDialog personDialog = new PersonDialog();
+            personDialog.setVisible(true);
         }
     }
-
 }
