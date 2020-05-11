@@ -6,12 +6,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import entities.Person;
 
 public class PersonData {
-    List<Person> lis = new CopyOnWriteArrayList<Person>();
-    int id;
-
-    public PersonData() {
-        id=0;
-    }
+    static List<Person> lis = new CopyOnWriteArrayList<Person>();
+    static int id=0;
 
     public List<Person> list() {
         return lis;
