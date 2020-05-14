@@ -3,9 +3,15 @@ package igu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class PersonDialog extends JDialog {
     private static final long serialVersionUID = 1L;
+    JTextField fromField;
+    JTextField toField;
+    JButton goButton;
+    JTable jTable;
+    JScrollPane jSP;
 
     public PersonDialog() {
         setSize(500, 500);
@@ -15,14 +21,20 @@ public class PersonDialog extends JDialog {
     }
 
     void initForm() {
-        JTextField fromField = new JTextField(" ", 30);
-        JTextField toField = new JTextField(30);
-        JButton goButton = new JButton("Save");
+        fromField = new JTextField(" ", 30);
+        toField = new JTextField(30);
+        goButton = new JButton("Save");
 
-        Object[][] rowData = { { 1, 2 }, { 3, 4 } };
-        String[] columnNames = { "col1", "col2" };
-        JTable jTable = new JTable(rowData, columnNames);
-        JScrollPane jSP = new JScrollPane();
+        jTable = new JTable();
+        jTable.setModel(new DefaultTableModel(
+            new  Object[][] { 
+                //{ 1, 2 }, 
+                //{ 3, 4 } 
+            },
+            new String[] { "col1", "col2" }
+        ));
+
+        jSP  = new JScrollPane();
         jSP.setViewportView(jTable);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
