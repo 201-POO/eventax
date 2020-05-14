@@ -2,8 +2,13 @@ package igu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import data.PersonData;
+import entities.Person;
 
 public class PersonDialog extends JDialog {
     private static final long serialVersionUID = 1L;
@@ -13,12 +18,23 @@ public class PersonDialog extends JDialog {
     JButton addButton = new JButton("Add");
     JTable jTable;
     JScrollPane jSP;
+    PersonData personData = new PersonData();
 
     public PersonDialog() {
         setSize(500, 500);
         setTitle("Person Dialog");
         setLocationRelativeTo(null);
+        
         initForm();
+        paintTable();
+    }
+    private void paintTable() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
+        List<Person> lis = personData.list();
+        while (modelo.getRowCount() > 0) modelo.removeRow(0);
+        for (Person d : lis) {
+            modelo.addRow(new Object[] { d.getId(), d.getName(), d.getSex() });
+        }
     }
 
     void initForm() {
@@ -28,7 +44,7 @@ public class PersonDialog extends JDialog {
             new Object[][] {
                 // { 1, 2 },
                 // { 3, 4 }
-        }, new String[] { "col1", "col2" }));
+        }, new String[] { "ID", "Name", "Sex" }));
         jSP = new JScrollPane();
         jSP.setViewportView(jTable);
 
@@ -59,5 +75,10 @@ public class PersonDialog extends JDialog {
 
     void addPerson(ActionEvent e){
         System.out.println(" addButton has press ");
+        Person d= new Person();
+        d.setName(fromField.getText());
+        d.setSex(toField.getText());
+        personData.create(d);
+        paintTable();
     }
 }
