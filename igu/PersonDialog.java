@@ -45,15 +45,19 @@ public class PersonDialog extends JDialog {
         final JDialog outer = this;
         goButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println(" goButton has press ");
+                //System.out.println(" goButton has press ");
                 outer.setVisible(false);
             }
         });
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println(" addButton has press ");
+                addPerson(e);
             }
         });
 
+    }
+
+    void addPerson(ActionEvent e){
+        System.out.println(" addButton has press ");
     }
 }
