@@ -7,9 +7,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class PersonDialog extends JDialog {
     private static final long serialVersionUID = 1L;
-    JTextField fromField;
-    JTextField toField;
-    JButton goButton;
+    JTextField fromField = new JTextField(" ", 30);
+    JTextField toField = new JTextField(30);
+    JButton goButton = new JButton("Salir");
+    JButton addButton = new JButton("Add");
     JTable jTable;
     JScrollPane jSP;
 
@@ -21,20 +22,14 @@ public class PersonDialog extends JDialog {
     }
 
     void initForm() {
-        fromField = new JTextField(" ", 30);
-        toField = new JTextField(30);
-        goButton = new JButton("Save");
 
         jTable = new JTable();
         jTable.setModel(new DefaultTableModel(
-            new  Object[][] { 
-                //{ 1, 2 }, 
-                //{ 3, 4 } 
-            },
-            new String[] { "col1", "col2" }
-        ));
-
-        jSP  = new JScrollPane();
+            new Object[][] {
+                // { 1, 2 },
+                // { 3, 4 }
+        }, new String[] { "col1", "col2" }));
+        jSP = new JScrollPane();
         jSP.setViewportView(jTable);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -42,8 +37,9 @@ public class PersonDialog extends JDialog {
         add(fromField);
         add(new JLabel("To:"));
         add(toField);
-        add(goButton);
+        add(addButton);
         add(jSP);
+        add(goButton);
 
         // Manejo de eventos
         final JDialog outer = this;
@@ -51,6 +47,11 @@ public class PersonDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(" goButton has press ");
                 outer.setVisible(false);
+            }
+        });
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(" addButton has press ");
             }
         });
 
