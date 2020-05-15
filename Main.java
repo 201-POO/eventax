@@ -8,7 +8,7 @@ import entities.Person;
  * Main
  */
 public class Main {
-
+    //Este es el metodo Main
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int opt=0;
