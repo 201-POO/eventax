@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import entities.Person;
 
 public class PersonData {
+    // falto desc
     static List<Person> lis = new CopyOnWriteArrayList<Person>();
     static int id=0;
 
