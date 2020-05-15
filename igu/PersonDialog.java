@@ -14,8 +14,9 @@ public class PersonDialog extends JDialog {
     private static final long serialVersionUID = 1L;
     JTextField fromField = new JTextField(" ", 30);
     JTextField toField = new JTextField(30);
-    JButton goButton = new JButton("Salir");
+    JButton goButton = new JButton("Exit");
     JButton addButton = new JButton("Add");
+    JButton delButton = new JButton("Remove");
     JTable jTable;
     JScrollPane jSP;
     PersonData personData = new PersonData();
@@ -24,14 +25,16 @@ public class PersonDialog extends JDialog {
         setSize(500, 500);
         setTitle("Person Dialog");
         setLocationRelativeTo(null);
-        
+
         initForm();
         paintTable();
     }
+
     private void paintTable() {
         DefaultTableModel modelo = (DefaultTableModel) jTable.getModel();
         List<Person> lis = personData.list();
-        while (modelo.getRowCount() > 0) modelo.removeRow(0);
+        while (modelo.getRowCount() > 0)
+            modelo.removeRow(0);
         for (Person d : lis) {
             modelo.addRow(new Object[] { d.getId(), d.getName(), d.getSex() });
         }
@@ -40,8 +43,7 @@ public class PersonDialog extends JDialog {
     void initForm() {
 
         jTable = new JTable();
-        jTable.setModel(new DefaultTableModel(
-            new Object[][] {
+        jTable.setModel(new DefaultTableModel(new Object[][] {
                 // { 1, 2 },
                 // { 3, 4 }
         }, new String[] { "ID", "Name", "Sex" }));
@@ -54,6 +56,7 @@ public class PersonDialog extends JDialog {
         add(new JLabel("To:"));
         add(toField);
         add(addButton);
+        add(delButton);
         add(jSP);
         add(goButton);
 
@@ -61,7 +64,7 @@ public class PersonDialog extends JDialog {
         final JDialog outer = this;
         goButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //System.out.println(" goButton has press ");
+                // System.out.println(" goButton has press ");
                 outer.setVisible(false);
             }
         });
@@ -70,15 +73,32 @@ public class PersonDialog extends JDialog {
                 addPerson(e);
             }
         });
+        delButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                delPerson(e);
+            }
+        });
 
     }
 
-    void addPerson(ActionEvent e){
+    void addPerson(ActionEvent e) {
         System.out.println(" addButton has press ");
-        Person d= new Person();
+        Person d = new Person();
         d.setName(fromField.getText());
         d.setSex(toField.getText());
         personData.create(d);
         paintTable();
+    }
+
+    void delPerson(ActionEvent e) {
+        if (jTable.getSelectedRow() != -1) {
+            System.out.println(" delButton has press ");
+            int[] row = jTable.getSelectedRows();
+            String ids = jTable.getValueAt(row[0], 0).toString();
+            System.out.println("selected: " + ids);
+            int id = Integer.parseInt(ids);
+            personData.delete(id);
+            paintTable();
+        }
     }
 }
