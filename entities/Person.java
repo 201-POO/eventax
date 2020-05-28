@@ -1,9 +1,17 @@
 package entities;
 
 public class Person {
-    int id;
-    String name;
-    String sex;
+    private int id;
+    private String name;
+    protected String sex;
+
+    public void eat() {
+        System.out.println("Comer en Person");
+    }
+
+
+
+
 
     public String getName() {
         return name;
